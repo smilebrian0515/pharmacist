@@ -31,7 +31,7 @@ class Upload extends CI_Controller {
 		$size = $_FILES["UpFile"]["size"];
 		$error = $_FILES["UpFile"]["error"];
 		$data = array("result"=>"");
-		echo $tmp_name.",".$name.",".$type.",".$size.",".$error;
+//		echo $tmp_name.",".$name.",".$type.",".$size.",".$error;
 		
 		if($error== UPLOAD_ERR_OK){
 			$fname5 = iconv("UTF-8","BIG5",$name);
