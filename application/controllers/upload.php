@@ -20,7 +20,7 @@ class Upload extends CI_Controller {
 	 */
 	public function index()
 	{
-		$data = array();
+		$data = array("result"=>"");
 		$this->parser->parse('upload',$data);
 	}
 
@@ -30,8 +30,8 @@ class Upload extends CI_Controller {
 		$type = $_FILES["UpFile"]["type"];
 		$size = $_FILES["UpFile"]["size"];
 		$error = $_FILES["UpFile"]["error"];
-		$data = array();
-	//	echo $tmp_name.",".$name.",".$type.",".$size.",".$error;
+		$data = array("result"=>"");
+		echo $tmp_name.",".$name.",".$type.",".$size.",".$error;
 		
 		if($error== UPLOAD_ERR_OK){
 			$fname5 = iconv("UTF-8","BIG5",$name);
@@ -43,10 +43,16 @@ class Upload extends CI_Controller {
 		//	$str = "INSERT INTO `a0328393`.`file` ( `index` , `filename` , `refilename` ) VALUES (".($i=$i+1)." , '".$fname8."' , 'test".$i."');";
 		//	$this->db->query($str);
 			if(move_uploaded_file($tmp_name,"./public/pic/".$name)){
-				$data["result"]=true;
+				$data["result"]="上傳成功";
+				
+				
+				
+				
+				
+				
 			}	
 		}else {
-			$data["result"]=false;
+			$data["result"]="上傳失敗";
 		}
 		
 		$this->parser->parse('upload',$data);
