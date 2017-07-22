@@ -379,8 +379,8 @@
 							<input type="file" name="UpFile">
 							<input type="submit">
 						</form>
-						<div id="upLoadResult" style="visibility:hidden">{result}</div>
-						<h1 id="resultText"></h1>
+						{result}
+						
 					</div>
                     <!-- /.col-lg-12 -->
                 </div>
