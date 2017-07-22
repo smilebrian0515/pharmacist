@@ -45,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                <a class="navbar-brand" href="index.html">Pharmacist</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -375,7 +375,12 @@
                         <h1 class="page-header">UpLoad</h1>
                     </div>
 					<div>
-						<input type="file">
+						<form method="post" action="/pharmacist/index.php/upload/fileUpLoad" enctype="multipart/form-data">
+							<input type="file" name="UpFile">
+							<input type="submit">
+						</form>
+						<div id="upLoadResult" style="visibility:hidden">{result}</div>
+						<h1 id="resultText"></h1>
 					</div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -400,6 +405,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="/pharmacist/public/dist/js/sb-admin-2.js"></script>
 
+	<script src="/pharmacist/public/js/upload.js"></script>
 </body>
 
 </html>
