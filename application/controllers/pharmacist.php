@@ -23,8 +23,4 @@ class Pharmacist extends CI_Controller {
 		$data = array();
 		$this->parser->parse('pharmacist',$data);
 	}
-	public function blank () {
-		$data = array();
-		$this->parser->parse('blank',$data);
-	}
 }
