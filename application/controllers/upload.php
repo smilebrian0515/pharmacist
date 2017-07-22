@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Pharmacist extends CI_Controller {
+class Upload extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -21,10 +21,7 @@ class Pharmacist extends CI_Controller {
 	public function index()
 	{
 		$data = array();
-		$this->parser->parse('pharmacist',$data);
+		$this->parser->parse('upload',$data);
 	}
-	public function blank () {
-		$data = array();
-		$this->parser->parse('blank',$data);
-	}
+
 }
