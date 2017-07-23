@@ -355,10 +355,13 @@
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/pharmacist/index.php/upload">圖片上傳</a>
+                                    <a class="active" href="/pharmacist/index.php/upload">圖片上傳</a>
                                 </li>
                                 <li>
-                                    <a href="login.html">Login Page</a>
+                                    <a href="/pharmacist/index.php/doubleCheck">辨識檢查</a>
+                                </li>
+								<li>
+                                    <a href="/pharmacist/index.php/Result">比對結果</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

@@ -20,6 +20,9 @@
     <!-- Custom CSS -->
     <link href="/pharmacist/public/dist/css/sb-admin-2.css" rel="stylesheet">
 
+    <!-- Morris Charts CSS -->
+    <link href="/pharmacist/public/vendor/morrisjs/morris.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="/pharmacist/public/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -266,10 +269,10 @@
                             <div class="input-group custom-search-form">
                                 <input type="text" class="form-control" placeholder="Search...">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
                             </div>
                             <!-- /input-group -->
                         </li>
@@ -348,7 +351,7 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li class="active">
+                        <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -370,27 +373,45 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-        <!-- Page Content -->
         <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">UpLoad</h1>
-                    </div>
-					<div>
-						<form method="post" action="/pharmacist/index.php/upload/fileUpLoad" enctype="multipart/form-data">
-							<input type="file" name="UpFile">
-							<input type="submit">
-						</form>
-						{result}
-						
-					</div>
-                    <!-- /.col-lg-12 -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">辨識檢查</h1>
                 </div>
-                <!-- /.row -->
             </div>
-            <!-- /.container-fluid -->
-        </div>
+			<form method="post" action="/pharmacist/index.php/doubleCheck/save">
+				<div align="right">
+					<h1>當天拍照日期</h1>
+					<input type="text" name="Date" id="Date" >
+				</div>
+				<div>
+					<font align="left">
+						姓名：<input name="name" id="name" type="text" >
+					</font>
+					<font align="center">
+						性別：<input name="gender" id="gender" type="text" >
+					</font>
+				</div>
+				<hr>
+				<table border="1" width="100%">
+					<th colspan="2" rowspan="2"></th>
+					<th>醫師姓名<input name="Doctor" id="Doctor" type="text"></th>
+					<th>處方日期<input name="prescription_date" id="prescription_date" type="text"></th>
+					<tr>	
+						<td>用法</td>
+						<td>劑量</td>
+					</tr>
+					<tr>
+						<td colspan="2"><input name="brand_drug[]" id="brand_drug" type="text" ><br><input name="generic_drug[]" id="generic_drug" type="text"></td>
+						<td><input name="dose[]" id="dose" type="text"></td>
+						<td><input name="frequency[]" name="frequency" type="text"></td>
+					</tr>
+					
+				</table>
+				
+			<input type="submit" value="確認">
+			</form>
+		</div>
         <!-- /#page-wrapper -->
 
     </div>
@@ -405,10 +426,41 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="/pharmacist/public/vendor/metisMenu/metisMenu.min.js"></script>
 
+    <!-- Morris Charts JavaScript -->
+    <script src="/pharmacist/public/vendor/raphael/raphael.min.js"></script>
+    <script src="/pharmacist/public/vendor/morrisjs/morris.min.js"></script>
+    <script src="/pharmacist/public/data/morris-data.js"></script>
+
     <!-- Custom Theme JavaScript -->
     <script src="/pharmacist/public/dist/js/sb-admin-2.js"></script>
-
-	<script src="/pharmacist/public/js/upload.js"></script>
+	<script src="/pharmacist/public/js/pharmacist.js"></script>
+	<script>
+		console.log("test");
+		var DataSource = {
+			url: "http://140.112.114.59/TaDELS/archiveImage/B_0001_0004_018/B0001_0004_018_001.jpg"
+		}
+		
+		function createTable(data)
+		{
+			$("#prescription_date").val(data[0][1]);
+			$("#name").val(data[1][2]);
+			$("#frequency").val(data[2][3]);
+			$("#dose").val(data[3][4]);
+			$("#brand_drug").val(data[4][5]);
+		}
+		$(document).ready(function(){
+			$.ajax({
+				url: 'http://140.120.54.104:5950/uploads',
+				type: 'post',
+				dataType: 'json',
+				success: function (data) {
+					console.log(data);
+					createTable(data);
+				},
+				data: DataSource
+			});
+		});
+    </script>
 </body>
 
 </html>

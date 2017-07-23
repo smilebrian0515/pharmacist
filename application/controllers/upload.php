@@ -36,20 +36,12 @@ class Upload extends CI_Controller {
 		if($error== UPLOAD_ERR_OK){
 			$fname5 = iconv("UTF-8","BIG5",$name);
 			$fname8 = iconv("UTF-8","UTF-8",$name);
-		//	$ftmp_name = iconv("UTF-8","BIG5",$tmp_name);
-		//	$str = "SELECT * FROM `file` WHERE 1";
-		//	$query = $this->db->query($str);
-		//	$i = count($query->result_array());
-		//	$str = "INSERT INTO `a0328393`.`file` ( `index` , `filename` , `refilename` ) VALUES (".($i=$i+1)." , '".$fname8."' , 'test".$i."');";
-		//	$this->db->query($str);
 			if(move_uploaded_file($tmp_name,"./public/pic/".$name)){
+				
+								
+				
+				
 				$data["result"]="上傳成功";
-				
-				
-				
-				
-				
-				
 			}	
 		}else {
 			$data["result"]="上傳失敗";
